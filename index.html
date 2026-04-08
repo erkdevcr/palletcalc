@@ -1001,6 +1001,38 @@ body.stark .logo-icon-stack .logo-icon{position:absolute;top:0;left:0;z-index:2}
 }
 .canvas-panel canvas{display:block;margin:0 auto;border-radius:6px}
 
+
+/* Camera switch */
+.cam-switch{display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.cam-switch-label{font-size:10px;font-weight:600;font-family:'JetBrains Mono',monospace;color:var(--text3);transition:color .3s}
+.cam-switch-label.active{color:var(--blue)}
+.cam-switch-track{
+  width:36px;height:18px;border-radius:9px;position:relative;
+  background:var(--card2);border:1px solid var(--border);transition:all .3s;
+}
+.cam-switch-thumb{
+  width:14px;height:14px;border-radius:50%;position:absolute;top:1px;left:1px;
+  background:var(--blue);transition:all .3s;
+}
+.cam-switch-track.on .cam-switch-thumb{left:19px}
+
+/* Stark switch */
+body.stark .cam-switch-track{
+  background:rgba(0,20,50,0.6);border-color:rgba(0,210,255,0.5);
+  box-shadow:0 0 8px rgba(0,210,255,0.15);
+}
+body.stark .cam-switch-track.on{
+  background:rgba(0,40,80,0.6);border-color:rgba(0,255,136,0.5);
+  box-shadow:0 0 8px rgba(0,255,136,0.15);
+}
+body.stark .cam-switch-thumb{
+  background:#00d4ff;box-shadow:0 0 6px rgba(0,212,255,0.5);
+}
+body.stark .cam-switch-track.on .cam-switch-thumb{
+  background:#00ff88;box-shadow:0 0 6px rgba(0,255,136,0.5);
+}
+body.stark .cam-switch-label.active{color:#00d4ff;text-shadow:0 0 6px rgba(0,212,255,0.4)}
+body.stark .cam-switch-track.on ~ .cam-switch-label:last-child.active{color:#00ff88;text-shadow:0 0 6px rgba(0,255,136,0.4)}
 .view-controls{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;justify-content:center}
 .view-btn{
   font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;
@@ -1294,6 +1326,12 @@ body.stark .toggle-group .toggle-opt.active{
             <button class="view-btn" onclick="set3DView('top')">Superior</button>
             <button class="view-btn" onclick="toggle3DStyle('solid')">Sólido</button>
             <button class="view-btn" onclick="toggle3DStyle('blueprint')">Blueprint</button>
+
+            <div class="cam-switch" onclick="toggleCamSwitch()">
+              <span class="cam-switch-label active" id="camLabelL">Ortho</span>
+              <div class="cam-switch-track" id="camTrack"><div class="cam-switch-thumb" id="camThumb"></div></div>
+              <span class="cam-switch-label" id="camLabelR">Persp</span>
+            </div>
           </div>
           <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px;justify-content:center;font-size:12px;color:var(--text3)">
             <span>Camas:</span>
@@ -1955,7 +1993,8 @@ function drawSideView() {
 }
 
 // ===== 3D VIEW (Three.js) =====
-let scene3, cam3, ren3, palGrp, box3D = [], threeInited = false;
+let scene3, cam3, camOrtho, camPersp, ren3, palGrp, box3D = [], threeInited = false;
+let camMode = 'ortho';
 let resizeObs3 = null;
 let rotX3 = -0.6, rotY3 = 0.7, tRotX = -0.6, tRotY = 0.7;
 let orthoZoom = 1, tOrthoZoom = 1, baseOrthoSize = 1;
@@ -1970,7 +2009,7 @@ function destroy3D() {
   // Remove only canvas/renderer, preserve HUD overlay
   [...c.children].forEach(ch => { if (!ch.classList.contains('stark-3d-overlay')) c.removeChild(ch); });
   if (ren3) { ren3.dispose(); ren3 = null; }
-  scene3 = null; cam3 = null; palGrp = null; box3D = [];
+  scene3 = null; cam3 = null; camOrtho = null; camPersp = null; palGrp = null; box3D = [];
 }
 
 function init3D() {
@@ -1983,7 +2022,10 @@ function init3D() {
   scene3 = new THREE.Scene();
 
   // Single orthographic camera for all views (true isometric = no perspective)
-  cam3 = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.01, 100);
+  camOrtho = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.01, 100);
+  camPersp = new THREE.PerspectiveCamera(45, c.clientWidth / c.clientHeight, 0.01, 100);
+  camMode = 'ortho';
+  cam3 = camOrtho;
 
   ren3 = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
   ren3.setSize(c.clientWidth, c.clientHeight);
@@ -2086,7 +2128,7 @@ function init3D() {
     prev3 = { x: e.clientX, y: e.clientY };
   };
   c.onmouseup = c.onmouseleave = () => drag3 = false;
-  c.onwheel = e => { e.preventDefault(); tOrthoZoom += e.deltaY * 0.001; tOrthoZoom = Math.max(0.3, Math.min(3, tOrthoZoom)); };
+  c.onwheel = e => { e.preventDefault(); const dir = camMode === 'persp' ? -1 : 1; tOrthoZoom += e.deltaY * 0.001 * dir; tOrthoZoom = Math.max(0.3, Math.min(3, tOrthoZoom)); };
 
   // Touch controls: 1 finger = rotate, 2 fingers = pinch zoom
   let touchDist3 = null;
@@ -2115,7 +2157,8 @@ function init3D() {
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
       );
-      tOrthoZoom -= (d - touchDist3) * 0.003;
+      const pdir = camMode === 'persp' ? 1 : -1;
+      tOrthoZoom += (d - touchDist3) * 0.003 * pdir;
       tOrthoZoom = Math.max(0.3, Math.min(3, tOrthoZoom));
       touchDist3 = d;
     }
@@ -2134,16 +2177,21 @@ function updateCamera() {
   const c = document.getElementById('three-container');
   if (!c.clientWidth) return;
   const aspect = c.clientWidth / c.clientHeight;
-  const s = baseOrthoSize * orthoZoom;
 
-  cam3.left = -s * aspect;
-  cam3.right = s * aspect;
-  cam3.top = s;
-  cam3.bottom = -s;
+  if (camMode === 'ortho') {
+    const s = baseOrthoSize * orthoZoom;
+    cam3.left = -s * aspect;
+    cam3.right = s * aspect;
+    cam3.top = s;
+    cam3.bottom = -s;
+  } else {
+    cam3.aspect = aspect;
+    cam3.fov = 45 / orthoZoom;
+  }
   cam3.updateProjectionMatrix();
 
   if (current3DView === 'iso') {
-    const d = baseOrthoSize * 5;
+    const d = camMode === 'ortho' ? baseOrthoSize * 5 : baseOrthoSize * 3;
     const x = d * Math.sin(rotY3) * Math.cos(rotX3);
     const y = d * Math.sin(-rotX3);
     const z = d * Math.cos(rotY3) * Math.cos(rotX3);
@@ -2151,6 +2199,29 @@ function updateCamera() {
     cam3.up.set(0, 1, 0);
     cam3.lookAt(0, 0, 0);
   }
+}
+
+function setCamMode(mode) {
+  if (!threeInited) return;
+  camMode = mode;
+  cam3 = mode === 'ortho' ? camOrtho : camPersp;
+  
+  // Copy position from the other camera
+  const src = mode === 'ortho' ? camPersp : camOrtho;
+  cam3.position.copy(src.position);
+  cam3.up.copy(src.up);
+  cam3.lookAt(0, 0, 0);
+  
+  // Re-trigger current view
+  set3DView(current3DView);
+  
+  document.getElementById('camTrack').classList.toggle('on', mode === 'persp');
+  document.getElementById('camLabelL').classList.toggle('active', mode === 'ortho');
+  document.getElementById('camLabelR').classList.toggle('active', mode === 'persp');
+}
+
+function toggleCamSwitch() {
+  setCamMode(camMode === 'ortho' ? 'persp' : 'ortho');
 }
 
 function anim3() {
@@ -2182,18 +2253,18 @@ function set3DView(v) {
     baseOrthoSize = Math.max(isoW, isoH) * 0.55;
     tRotY = 0.7; tRotX = -0.6;
   } else {
-    const d = 10;
+    const dist = camMode === 'ortho' ? 10 : baseOrthoSize * 3;
     if (v === 'front') {
       baseOrthoSize = Math.max(PW3, stackH) * 0.55;
-      cam3.position.set(0, 0, d);
+      cam3.position.set(0, 0, dist);
       cam3.up.set(0, 1, 0);
     } else if (v === 'side') {
       baseOrthoSize = Math.max(PD3, stackH) * 0.55;
-      cam3.position.set(d, 0, 0);
+      cam3.position.set(dist, 0, 0);
       cam3.up.set(0, 1, 0);
     } else if (v === 'top') {
       baseOrthoSize = Math.max(PW3, PD3) * 0.55;
-      cam3.position.set(0, d, 0);
+      cam3.position.set(0, dist, 0);
       cam3.up.set(0, 0, -1);
     }
     cam3.lookAt(0, 0, 0);
@@ -3056,7 +3127,8 @@ function startStarkHUD() {
       const fps = Math.floor(55 + Math.random() * 10);
       const poly = calc ? (calc.boxesPerLayer * calc.layers * 12 / 1000).toFixed(1) : '0.0';
       const mode = current3DStyle === 'blueprint' ? 'BLUEPRINT' : 'SOLID';
-      br.innerHTML = 'RENDER: ' + fps + 'fps<br>POLY: ' + poly + 'K<br>MODE: ' + mode;
+      const cam = camMode === 'ortho' ? 'ORTHO' : 'PERSP';
+      br.innerHTML = 'RENDER: ' + fps + 'fps<br>POLY: ' + poly + 'K<br>MODE: ' + mode + '<br>CAM: ' + cam;
     }
   }, 1200);
 }
