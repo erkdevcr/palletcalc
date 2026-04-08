@@ -92,17 +92,17 @@ body.light{
 }
 body.stark{
   --bg:#0a1628;--bg2:#0d1b30;--card:rgba(10,30,60,0.85);--card2:rgba(15,40,75,0.7);
-  --border:rgba(0,180,255,0.25);--border-hi:rgba(0,212,255,0.5);
+  --border:rgba(0,210,255,0.6);--border-hi:rgba(0,212,255,0.6);
   --text:#d0eeff;--text2:#7bb8d8;--text3:#3d7a9e;
-  --blue:#00d4ff;--blue-dim:rgba(0,212,255,0.12);--blue-glow:rgba(0,212,255,0.35);
+  --blue:#00d4ff;--blue-dim:rgba(0,212,255,0.15);--blue-glow:rgba(0,212,255,0.4);
   --orange:#ff9f43;--orange-dim:rgba(255,159,67,0.12);
   --teal:#00ff88;--teal-dim:rgba(0,255,136,0.1);
   --red:#ff4757;--green:#00ff88;
   --yellow:#ffd32a;--yellow-dim:rgba(255,211,42,0.1);
   --pallet-outer:#4a6a8a;--pallet-inner:#2a4a6a;
-  --box-a-fill:#1a6e9e;--box-a-stroke:#0d4a70;--box-a-text:#d0eeff;
-  --box-b-fill:#0d3a5c;--box-b-stroke:#082a44;--box-b-text:#7bb8d8;
-  --dim-text:#3d7a9e;--margin-text:rgba(0,180,255,0.2);
+  --box-a-fill:#2090c0;--box-a-stroke:#1570a0;--box-a-text:#d0eeff;
+  --box-b-fill:#145080;--box-b-stroke:#0e3a60;--box-b-text:#7bb8d8;
+  --dim-text:#3d7a9e;--margin-text:rgba(0,210,255,0.5);
   --stark-glow:0 0 15px rgba(0,212,255,0.15);
   --stark-border-glow:0 0 8px rgba(0,212,255,0.3);
 }
@@ -110,13 +110,17 @@ body.stark{
 
 /* Stark theme HUD elements */
 body.stark{
-  background:#080e18;
-  background-image:
-    linear-gradient(rgba(0,180,255,0.06) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,180,255,0.06) 1px,transparent 1px);
-  background-size:40px 40px;
+  background:linear-gradient(160deg,#060d1a 0%,#0a1a35 35%,#0d2040 60%,#081630 100%);
   background-attachment:fixed;
 }
+body.stark::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,180,255,0.09) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,180,255,0.09) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body.stark>*{position:relative;z-index:1}
 
 /* Scan line animation */
 /* Scan line div */
@@ -131,14 +135,14 @@ body.stark .stark-scanline{display:block}
 
 /* Header glow */
 body.stark .app-header{
-  border-bottom:1px solid rgba(0,180,255,0.3);
-  background:rgba(10,22,40,0.95);
-  box-shadow:0 2px 20px rgba(0,180,255,0.1);
+  border-bottom:1px solid rgba(0,210,255,0.6);
+  background:linear-gradient(180deg,rgba(8,18,38,0.97),rgba(10,26,50,0.95));
+  box-shadow:0 2px 25px rgba(0,140,255,0.15);
 }
-body.stark .logo h1{color:#00d4ff;text-shadow:0 0 10px rgba(0,212,255,0.4)}
+body.stark .logo h1{color:#00d4ff;text-shadow:0 0 14px rgba(0,212,255,0.5)}
 body.stark .logo h1 span{color:#00ff88}
 body.stark .logo-icon-stack{width:46px;height:46px}
-body.stark .logo-icon{box-shadow:0 0 12px rgba(0,212,255,0.4);border:1px solid rgba(0,180,255,0.3)}
+body.stark .logo-icon{box-shadow:0 0 12px rgba(0,212,255,0.4);border:1px solid rgba(0,210,255,0.55)}
 body.stark .logo-icon .fc1{fill:#00d4ff}
 body.stark .logo-icon .fc2,.body.stark .logo-icon .fc3{fill:#00ff88;stroke:#00ff88}
 body.stark .logo-icon .fc3{fill:#00ff88}
@@ -147,12 +151,12 @@ body.stark .header-subtitle{color:#3d7a9e}
 
 /* Sidebar */
 body.stark .sidebar{
-  background:transparent;
-  border-right:1px solid rgba(0,180,255,0.25);
+  background:linear-gradient(180deg,rgba(8,16,32,0.4),rgba(6,14,28,0.3));
+  border-right:1px solid rgba(0,210,255,0.55);
 }
 body.stark .section-label{
-  color:#00d4ff;text-shadow:0 0 8px rgba(0,212,255,0.3);
-  border-bottom:1px solid rgba(0,180,255,0.15);padding-bottom:8px;margin-bottom:16px;
+  color:#00d4ff;text-shadow:0 0 10px rgba(0,212,255,0.4);
+  border-bottom:1px solid rgba(0,210,255,0.5);padding-bottom:8px;margin-bottom:16px;
   letter-spacing:2px;text-transform:uppercase;font-size:11px;
 }
 body.stark .section-label::before{content:'◆ ';color:#00ff88;font-size:8px}
@@ -160,8 +164,8 @@ body.stark .section-label::after{content:' ◆';color:#00ff88;font-size:8px}
 
 /* Inputs with glow */
 body.stark .field input,body.stark .field select{
-  box-shadow:0 0 8px rgba(0,180,255,0.15),inset 0 0 6px rgba(0,180,255,0.05);
-  background:rgba(0,20,50,0.6);border:1px solid rgba(0,180,255,0.25);color:#d0eeff;
+  box-shadow:0 0 8px rgba(0,210,255,0.5),inset 0 0 6px rgba(0,180,255,0.05);
+  background:rgba(0,20,50,0.6);border:1px solid rgba(0,210,255,0.6);color:#d0eeff;
 }
 body.stark .field input:focus,body.stark .field select:focus{
   border-color:#00d4ff;box-shadow:0 0 18px rgba(0,212,255,0.35),inset 0 0 8px rgba(0,212,255,0.1);
@@ -169,12 +173,403 @@ body.stark .field input:focus,body.stark .field select:focus{
 body.stark .field label{color:#5a9ab8;text-transform:uppercase;font-size:10px;letter-spacing:1px}
 
 /* Toggles */
-body.stark .toggle-opt{background:rgba(0,20,50,0.5);border-color:rgba(0,180,255,0.15);color:#3d7a9e;box-shadow:0 0 5px rgba(0,180,255,0.08)}
-body.stark .toggle-opt.active{
-  background:rgba(0,212,255,0.12);color:#00d4ff;
-  box-shadow:inset 0 0 10px rgba(0,212,255,0.1);
+body.stark .toggle-opt{background:rgba(0,20,50,0.5);border-color:rgba(0,210,255,0.5);color:#3d7a9e;box-shadow:0 0 5px rgba(0,180,255,0.08)}
+
+/* Stark glitch on active toggles */
+
+
+
+  4.2%{clip-path:inset(9px 0 13px 0)}
+  8.3%{clip-path:inset(13px 0 19px 0)}
+  12.5%{clip-path:inset(10px 0 17px 0)}
+  16.7%{clip-path:inset(15px 0 15px 0)}
+  20.8%{clip-path:inset(8px 0 15px 0)}
+  25.0%{clip-path:inset(6px 0 13px 0)}
+  29.2%{clip-path:inset(20px 0 18px 0)}
+  33.3%{clip-path:inset(24px 0 7px 0)}
+  37.5%{clip-path:inset(20px 0 11px 0)}
+  41.7%{clip-path:inset(0px 0 25px 0)}
+  45.8%{clip-path:inset(13px 0 5px 0)}
+  50.0%{clip-path:inset(6px 0 9px 0)}
+  54.2%{clip-path:inset(22px 0 14px 0)}
+  58.3%{clip-path:inset(3px 0 16px 0)}
+  62.5%{clip-path:inset(26px 0 4px 0)}
+  66.7%{clip-path:inset(6px 0 20px 0)}
+  70.8%{clip-path:inset(6px 0 23px 0)}
+  75.0%{clip-path:inset(21px 0 18px 0)}
+  79.2%{clip-path:inset(18px 0 19px 0)}
+  83.3%{clip-path:inset(13px 0 3px 0)}
+  87.5%{clip-path:inset(12px 0 25px 0)}
+  91.7%{clip-path:inset(23px 0 16px 0)}
+  95.8%{clip-path:inset(12px 0 15px 0)}
+  100.0%{clip-path:inset(18px 0 3px 0)}
+}}
+
+  4.8%{clip-path:inset(22px 0 13px 0)}
+  9.5%{clip-path:inset(12px 0 20px 0)}
+  14.3%{clip-path:inset(9px 0 6px 0)}
+  19.0%{clip-path:inset(37px 0 0px 0)}
+  23.8%{clip-path:inset(15px 0 8px 0)}
+  28.6%{clip-path:inset(8px 0 9px 0)}
+  33.3%{clip-path:inset(9px 0 2px 0)}
+  38.1%{clip-path:inset(5px 0 3px 0)}
+  42.9%{clip-path:inset(7px 0 24px 0)}
+  47.6%{clip-path:inset(22px 0 13px 0)}
+  52.4%{clip-path:inset(13px 0 16px 0)}
+  57.1%{clip-path:inset(13px 0 14px 0)}
+  61.9%{clip-path:inset(8px 0 13px 0)}
+  66.7%{clip-path:inset(1px 0 33px 0)}
+  71.4%{clip-path:inset(3px 0 13px 0)}
+  76.2%{clip-path:inset(2px 0 34px 0)}
+  81.0%{clip-path:inset(1px 0 14px 0)}
+  85.7%{clip-path:inset(29px 0 2px 0)}
+  90.5%{clip-path:inset(14px 0 8px 0)}
+  95.2%{clip-path:inset(4px 0 29px 0)}
+  100.0%{clip-path:inset(33px 0 3px 0)}
+}}
+
+  4.3%{clip-path:inset(15px 0 11px 0)}
+  8.7%{clip-path:inset(0px 0 8px 0)}
+  13.0%{clip-path:inset(16px 0 2px 0)}
+  17.4%{clip-path:inset(9px 0 24px 0)}
+  21.7%{clip-path:inset(0px 0 28px 0)}
+  26.1%{clip-path:inset(17px 0 9px 0)}
+  30.4%{clip-path:inset(9px 0 14px 0)}
+  34.8%{clip-path:inset(35px 0 4px 0)}
+  39.1%{clip-path:inset(16px 0 7px 0)}
+  43.5%{clip-path:inset(20px 0 2px 0)}
+  47.8%{clip-path:inset(7px 0 6px 0)}
+  52.2%{clip-path:inset(3px 0 34px 0)}
+  56.5%{clip-path:inset(18px 0 18px 0)}
+  60.9%{clip-path:inset(2px 0 26px 0)}
+  65.2%{clip-path:inset(13px 0 11px 0)}
+  69.6%{clip-path:inset(12px 0 3px 0)}
+  73.9%{clip-path:inset(7px 0 25px 0)}
+  78.3%{clip-path:inset(18px 0 0px 0)}
+  82.6%{clip-path:inset(2px 0 35px 0)}
+  87.0%{clip-path:inset(5px 0 31px 0)}
+  91.3%{clip-path:inset(3px 0 2px 0)}
+  95.7%{clip-path:inset(23px 0 3px 0)}
+  100.0%{clip-path:inset(30px 0 8px 0)}
+}}
+
+  7.1%{clip-path:inset(11px 0 29px 0)}
+  14.3%{clip-path:inset(23px 0 7px 0)}
+  21.4%{clip-path:inset(23px 0 0px 0)}
+  28.6%{clip-path:inset(23px 0 0px 0)}
+  35.7%{clip-path:inset(26px 0 14px 0)}
+  42.9%{clip-path:inset(17px 0 0px 0)}
+  50.0%{clip-path:inset(18px 0 15px 0)}
+  57.1%{clip-path:inset(2px 0 32px 0)}
+  64.3%{clip-path:inset(32px 0 1px 0)}
+  71.4%{clip-path:inset(35px 0 3px 0)}
+  78.6%{clip-path:inset(18px 0 13px 0)}
+  85.7%{clip-path:inset(5px 0 14px 0)}
+  92.9%{clip-path:inset(12px 0 21px 0)}
+  100.0%{clip-path:inset(18px 0 19px 0)}
+}}
+
+  4.8%{clip-path:inset(1px 0 20px 0)}
+  9.5%{clip-path:inset(9px 0 29px 0)}
+  14.3%{clip-path:inset(0px 0 25px 0)}
+  19.0%{clip-path:inset(3px 0 9px 0)}
+  23.8%{clip-path:inset(15px 0 3px 0)}
+  28.6%{clip-path:inset(16px 0 6px 0)}
+  33.3%{clip-path:inset(3px 0 2px 0)}
+  38.1%{clip-path:inset(5px 0 2px 0)}
+  42.9%{clip-path:inset(20px 0 15px 0)}
+  47.6%{clip-path:inset(23px 0 10px 0)}
+  52.4%{clip-path:inset(0px 0 26px 0)}
+  57.1%{clip-path:inset(0px 0 30px 0)}
+  61.9%{clip-path:inset(5px 0 10px 0)}
+  66.7%{clip-path:inset(9px 0 16px 0)}
+  71.4%{clip-path:inset(12px 0 15px 0)}
+  76.2%{clip-path:inset(5px 0 33px 0)}
+  81.0%{clip-path:inset(34px 0 5px 0)}
+  85.7%{clip-path:inset(28px 0 5px 0)}
+  90.5%{clip-path:inset(23px 0 11px 0)}
+  95.2%{clip-path:inset(11px 0 5px 0)}
+  100.0%{clip-path:inset(16px 0 13px 0)}
+}}
+
+  5.0%{clip-path:inset(2px 0 6px 0)}
+  10.0%{clip-path:inset(27px 0 2px 0)}
+  15.0%{clip-path:inset(27px 0 9px 0)}
+  20.0%{clip-path:inset(29px 0 3px 0)}
+  25.0%{clip-path:inset(11px 0 0px 0)}
+  30.0%{clip-path:inset(13px 0 7px 0)}
+  35.0%{clip-path:inset(23px 0 16px 0)}
+  40.0%{clip-path:inset(26px 0 7px 0)}
+  45.0%{clip-path:inset(11px 0 1px 0)}
+  50.0%{clip-path:inset(31px 0 9px 0)}
+  55.0%{clip-path:inset(27px 0 0px 0)}
+  60.0%{clip-path:inset(7px 0 18px 0)}
+  65.0%{clip-path:inset(26px 0 2px 0)}
+  70.0%{clip-path:inset(17px 0 22px 0)}
+  75.0%{clip-path:inset(23px 0 9px 0)}
+  80.0%{clip-path:inset(31px 0 1px 0)}
+  85.0%{clip-path:inset(4px 0 22px 0)}
+  90.0%{clip-path:inset(26px 0 9px 0)}
+  95.0%{clip-path:inset(16px 0 16px 0)}
+  100.0%{clip-path:inset(8px 0 23px 0)}
+}}
+body.stark .logo h1 span{
+  text-shadow:0 0 10px rgba(0,255,136,0.4);
 }
-body.stark .toggle-group{border-color:rgba(0,180,255,0.25);box-shadow:0 0 8px rgba(0,180,255,0.1)}
+.calc-glitch-wrap{display:inline;position:relative}
+.calc-glitch-layer{
+  position:absolute;top:0;left:0;
+  pointer-events:none;opacity:0;overflow:hidden;
+  font:inherit;font-weight:inherit;color:inherit;
+}
+
+
+
+
+  5.0%{clip-path:inset(10px 0 23px 0)}
+  10.0%{clip-path:inset(8px 0 20px 0)}
+  15.0%{clip-path:inset(4px 0 36px 0)}
+  20.0%{clip-path:inset(23px 0 14px 0)}
+  25.0%{clip-path:inset(8px 0 26px 0)}
+  30.0%{clip-path:inset(19px 0 7px 0)}
+  35.0%{clip-path:inset(2px 0 12px 0)}
+  40.0%{clip-path:inset(15px 0 10px 0)}
+  45.0%{clip-path:inset(7px 0 31px 0)}
+  50.0%{clip-path:inset(10px 0 28px 0)}
+  55.0%{clip-path:inset(6px 0 30px 0)}
+  60.0%{clip-path:inset(3px 0 36px 0)}
+  65.0%{clip-path:inset(19px 0 10px 0)}
+  70.0%{clip-path:inset(30px 0 2px 0)}
+  75.0%{clip-path:inset(1px 0 28px 0)}
+  80.0%{clip-path:inset(26px 0 2px 0)}
+  85.0%{clip-path:inset(22px 0 12px 0)}
+  90.0%{clip-path:inset(3px 0 16px 0)}
+  95.0%{clip-path:inset(9px 0 17px 0)}
+  100.0%{clip-path:inset(5px 0 18px 0)}
+}}
+  47%{clip-path:inset(0 0 0 0)}
+  48%{clip-path:inset(29px 0 5px 0)}
+  49%{clip-path:inset(13px 0 17px 0)}
+  50%{clip-path:inset(8px 0 27px 0)}
+  51%{clip-path:inset(23px 0 2px 0)}
+  52%{clip-path:inset(0 0 0 0)}
+  96%{clip-path:inset(0 0 0 0)}
+  97%{clip-path:inset(18px 0 17px 0)}
+  98%{clip-path:inset(12px 0 27px 0)}
+  99%{clip-path:inset(11px 0 2px 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}}
+  15%{clip-path:inset(0 0 0 0)}
+  16%{clip-path:inset(10px 0 28px 0)}
+  17%{clip-path:inset(9px 0 9px 0)}
+  18%{clip-path:inset(25px 0 4px 0)}
+  19%{clip-path:inset(13px 0 15px 0)}
+  20%{clip-path:inset(1px 0 14px 0)}
+  21%{clip-path:inset(37px 0 0px 0)}
+  22%{clip-path:inset(5px 0 10px 0)}
+  23%{clip-path:inset(0 0 0 0)}
+  55%{clip-path:inset(0 0 0 0)}
+  56%{clip-path:inset(33px 0 6px 0)}
+  57%{clip-path:inset(7px 0 16px 0)}
+  58%{clip-path:inset(6px 0 7px 0)}
+  59%{clip-path:inset(14px 0 12px 0)}
+  60%{clip-path:inset(18px 0 11px 0)}
+  61%{clip-path:inset(0 0 0 0)}
+  85%{clip-path:inset(0 0 0 0)}
+  86%{clip-path:inset(17px 0 20px 0)}
+  87%{clip-path:inset(0px 0 13px 0)}
+  88%{clip-path:inset(8px 0 14px 0)}
+  89%{clip-path:inset(17px 0 4px 0)}
+  90%{clip-path:inset(9px 0 23px 0)}
+  91%{clip-path:inset(0 0 0 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}}
+  14%{clip-path:inset(0 0 0 0)}
+  15%{clip-path:inset(19px 0 6px 0)}
+  21%{clip-path:inset(13px 0 12px 0)}
+  27%{clip-path:inset(28px 0 1px 0)}
+  28%{clip-path:inset(0 0 0 0)}
+  54%{clip-path:inset(0 0 0 0)}
+  55%{clip-path:inset(15px 0 7px 0)}
+  61%{clip-path:inset(10px 0 22px 0)}
+  67%{clip-path:inset(0px 0 0px 0)}
+  68%{clip-path:inset(0 0 0 0)}
+  84%{clip-path:inset(0 0 0 0)}
+  85%{clip-path:inset(6px 0 5px 0)}
+  91%{clip-path:inset(4px 0 28px 0)}
+  92%{clip-path:inset(0 0 0 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}}
+  15%{clip-path:inset(0 0 0 0)}
+  16%{clip-path:inset(15px 0 0px 0)}
+  17%{clip-path:inset(5px 0 30px 0)}
+  18%{clip-path:inset(29px 0 8px 0)}
+  19%{clip-path:inset(15px 0 23px 0)}
+  20%{clip-path:inset(16px 0 10px 0)}
+  21%{clip-path:inset(19px 0 2px 0)}
+  22%{clip-path:inset(21px 0 10px 0)}
+  23%{clip-path:inset(0 0 0 0)}
+  55%{clip-path:inset(0 0 0 0)}
+  56%{clip-path:inset(25px 0 8px 0)}
+  57%{clip-path:inset(9px 0 17px 0)}
+  58%{clip-path:inset(0px 0 21px 0)}
+  59%{clip-path:inset(4px 0 7px 0)}
+  60%{clip-path:inset(19px 0 3px 0)}
+  61%{clip-path:inset(0 0 0 0)}
+  85%{clip-path:inset(0 0 0 0)}
+  86%{clip-path:inset(13px 0 14px 0)}
+  87%{clip-path:inset(22px 0 4px 0)}
+  88%{clip-path:inset(2px 0 16px 0)}
+  89%{clip-path:inset(26px 0 7px 0)}
+  90%{clip-path:inset(16px 0 9px 0)}
+  91%{clip-path:inset(0 0 0 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}
+  5.0%{clip-path:inset(5px 0 24px 0)}
+  10.0%{clip-path:inset(17px 0 0px 0)}
+  15.0%{clip-path:inset(3px 0 8px 0)}
+  20.0%{clip-path:inset(23px 0 2px 0)}
+  25.0%{clip-path:inset(27px 0 4px 0)}
+  30.0%{clip-path:inset(40px 0 0px 0)}
+  35.0%{clip-path:inset(34px 0 1px 0)}
+  40.0%{clip-path:inset(7px 0 24px 0)}
+  45.0%{clip-path:inset(24px 0 15px 0)}
+  50.0%{clip-path:inset(20px 0 1px 0)}
+  55.0%{clip-path:inset(15px 0 7px 0)}
+  60.0%{clip-path:inset(7px 0 1px 0)}
+  65.0%{clip-path:inset(21px 0 5px 0)}
+  70.0%{clip-path:inset(20px 0 9px 0)}
+  75.0%{clip-path:inset(2px 0 0px 0)}
+  80.0%{clip-path:inset(1px 0 13px 0)}
+  85.0%{clip-path:inset(9px 0 26px 0)}
+  90.0%{clip-path:inset(15px 0 22px 0)}
+  95.0%{clip-path:inset(36px 0 1px 0)}
+  100.0%{clip-path:inset(25px 0 11px 0)}
+}
+
+  5.0%{clip-path:inset(2px 0 22px 0)}
+  10.0%{clip-path:inset(6px 0 6px 0)}
+  15.0%{clip-path:inset(23px 0 11px 0)}
+  20.0%{clip-path:inset(25px 0 11px 0)}
+  25.0%{clip-path:inset(2px 0 33px 0)}
+  30.0%{clip-path:inset(1px 0 31px 0)}
+  35.0%{clip-path:inset(10px 0 24px 0)}
+  40.0%{clip-path:inset(6px 0 26px 0)}
+  45.0%{clip-path:inset(14px 0 17px 0)}
+  50.0%{clip-path:inset(12px 0 21px 0)}
+  55.0%{clip-path:inset(11px 0 3px 0)}
+  60.0%{clip-path:inset(38px 0 0px 0)}
+  65.0%{clip-path:inset(16px 0 3px 0)}
+  70.0%{clip-path:inset(9px 0 14px 0)}
+  75.0%{clip-path:inset(26px 0 8px 0)}
+  80.0%{clip-path:inset(6px 0 30px 0)}
+  85.0%{clip-path:inset(10px 0 14px 0)}
+  90.0%{clip-path:inset(0px 0 15px 0)}
+  95.0%{clip-path:inset(9px 0 8px 0)}
+  100.0%{clip-path:inset(30px 0 7px 0)}
+}}
+  47%{clip-path:inset(0 0 0 0)}
+  48%{clip-path:inset(18px 0 10px 0)}
+  49%{clip-path:inset(6px 0 18px 0)}
+  50%{clip-path:inset(24px 0 8px 0)}
+  51%{clip-path:inset(0px 0 18px 0)}
+  52%{clip-path:inset(0 0 0 0)}
+  96%{clip-path:inset(0 0 0 0)}
+  97%{clip-path:inset(21px 0 18px 0)}
+  98%{clip-path:inset(8px 0 15px 0)}
+  99%{clip-path:inset(12px 0 16px 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}}
+  15%{clip-path:inset(0 0 0 0)}
+  16%{clip-path:inset(1px 0 25px 0)}
+  17%{clip-path:inset(2px 0 23px 0)}
+  18%{clip-path:inset(1px 0 25px 0)}
+  19%{clip-path:inset(30px 0 2px 0)}
+  20%{clip-path:inset(3px 0 26px 0)}
+  21%{clip-path:inset(13px 0 24px 0)}
+  22%{clip-path:inset(4px 0 1px 0)}
+  23%{clip-path:inset(0 0 0 0)}
+  55%{clip-path:inset(0 0 0 0)}
+  56%{clip-path:inset(9px 0 0px 0)}
+  57%{clip-path:inset(24px 0 13px 0)}
+  58%{clip-path:inset(1px 0 24px 0)}
+  59%{clip-path:inset(22px 0 1px 0)}
+  60%{clip-path:inset(18px 0 6px 0)}
+  61%{clip-path:inset(0 0 0 0)}
+  85%{clip-path:inset(0 0 0 0)}
+  86%{clip-path:inset(12px 0 26px 0)}
+  87%{clip-path:inset(6px 0 20px 0)}
+  88%{clip-path:inset(18px 0 18px 0)}
+  89%{clip-path:inset(25px 0 8px 0)}
+  90%{clip-path:inset(7px 0 10px 0)}
+  91%{clip-path:inset(0 0 0 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}}
+  14%{clip-path:inset(0 0 0 0)}
+  15%{clip-path:inset(13px 0 13px 0)}
+  21%{clip-path:inset(13px 0 14px 0)}
+  27%{clip-path:inset(1px 0 18px 0)}
+  28%{clip-path:inset(0 0 0 0)}
+  54%{clip-path:inset(0 0 0 0)}
+  55%{clip-path:inset(8px 0 7px 0)}
+  61%{clip-path:inset(14px 0 26px 0)}
+  67%{clip-path:inset(10px 0 10px 0)}
+  68%{clip-path:inset(0 0 0 0)}
+  84%{clip-path:inset(0 0 0 0)}
+  85%{clip-path:inset(1px 0 33px 0)}
+  91%{clip-path:inset(29px 0 8px 0)}
+  92%{clip-path:inset(0 0 0 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}}
+  15%{clip-path:inset(0 0 0 0)}
+  16%{clip-path:inset(19px 0 18px 0)}
+  17%{clip-path:inset(0px 0 3px 0)}
+  18%{clip-path:inset(5px 0 17px 0)}
+  19%{clip-path:inset(12px 0 13px 0)}
+  20%{clip-path:inset(13px 0 2px 0)}
+  21%{clip-path:inset(15px 0 0px 0)}
+  22%{clip-path:inset(32px 0 7px 0)}
+  23%{clip-path:inset(0 0 0 0)}
+  55%{clip-path:inset(0 0 0 0)}
+  56%{clip-path:inset(7px 0 13px 0)}
+  57%{clip-path:inset(6px 0 8px 0)}
+  58%{clip-path:inset(25px 0 10px 0)}
+  59%{clip-path:inset(8px 0 20px 0)}
+  60%{clip-path:inset(9px 0 6px 0)}
+  61%{clip-path:inset(0 0 0 0)}
+  85%{clip-path:inset(0 0 0 0)}
+  86%{clip-path:inset(12px 0 21px 0)}
+  87%{clip-path:inset(12px 0 1px 0)}
+  88%{clip-path:inset(7px 0 11px 0)}
+  89%{clip-path:inset(18px 0 12px 0)}
+  90%{clip-path:inset(5px 0 9px 0)}
+  91%{clip-path:inset(0 0 0 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}
+  5.0%{clip-path:inset(0px 0 13px 0)}
+  10.0%{clip-path:inset(22px 0 7px 0)}
+  15.0%{clip-path:inset(5px 0 21px 0)}
+  20.0%{clip-path:inset(5px 0 22px 0)}
+  25.0%{clip-path:inset(3px 0 4px 0)}
+  30.0%{clip-path:inset(11px 0 28px 0)}
+  35.0%{clip-path:inset(14px 0 20px 0)}
+  40.0%{clip-path:inset(26px 0 7px 0)}
+  45.0%{clip-path:inset(14px 0 16px 0)}
+  50.0%{clip-path:inset(14px 0 7px 0)}
+  55.0%{clip-path:inset(1px 0 5px 0)}
+  60.0%{clip-path:inset(26px 0 1px 0)}
+  65.0%{clip-path:inset(16px 0 1px 0)}
+  70.0%{clip-path:inset(2px 0 12px 0)}
+  75.0%{clip-path:inset(5px 0 9px 0)}
+  80.0%{clip-path:inset(31px 0 1px 0)}
+  85.0%{clip-path:inset(19px 0 20px 0)}
+  90.0%{clip-path:inset(33px 0 2px 0)}
+  95.0%{clip-path:inset(26px 0 8px 0)}
+  100.0%{clip-path:inset(4px 0 17px 0)}
+}
+
+
+body.stark .toggle-group{border-color:rgba(0,210,255,0.55);box-shadow:0 0 8px rgba(0,180,255,0.1)}
 
 /* Button */
 body.stark .btn-calc{
@@ -187,7 +582,7 @@ body.stark .btn-calc{
 .stark-code-ticker{
   display:none;font-family:'JetBrains Mono',monospace;font-size:11px;
   line-height:1.7;padding:6px 16px;background:rgba(5,10,20,0.85);
-  border-bottom:1px solid rgba(0,180,255,0.15);color:rgba(0,160,220,0.5);
+  border-bottom:1px solid rgba(0,210,255,0.5);color:rgba(0,160,220,0.5);
   overflow:hidden;white-space:nowrap;
 }
 body.stark .stark-code-ticker{display:block}
@@ -198,15 +593,14 @@ body.stark .stark-code-ticker{display:block}
 .stark-code-ticker .cm{color:rgba(100,140,180,0.4)}
 .stark-code-ticker .num{color:rgba(255,159,67,0.6)}
 .stark-code-ticker div{overflow:hidden}
-body.stark .btn-calc::after{
-  content:'▌';margin-left:4px;animation:cursorBlink .6s step-end infinite;font-weight:400;
-}
-@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
+
+@keyframes cursorBlink{0%,100%{opacity:.7}50%{opacity:0}}
+body.stark .stark-cursor{display:inline!important}
 body.stark .btn-calc:hover{box-shadow:0 6px 35px rgba(0,212,255,0.5)}
 
 /* Stats with HUD corners */
 body.stark .stat{
-  background:rgba(10,30,60,0.7);border:1px solid rgba(0,180,255,0.2);
+  background:rgba(10,30,60,0.7);border:1px solid rgba(0,210,255,0.6);
   box-shadow:var(--stark-glow);position:relative;
 }
 body.stark .stat::before,body.stark .stat::after{
@@ -215,19 +609,68 @@ body.stark .stat::before,body.stark .stat::after{
 }
 body.stark .stat::before{top:4px;left:4px;border-top-width:2px;border-left-width:2px}
 body.stark .stat::after{bottom:4px;right:4px;border-bottom-width:2px;border-right-width:2px}
+
+/* Stark stat ripple */
+body.stark .stat .val{position:relative}
+body.stark .stat .val::before,
+body.stark .stat .val::after{
+  content:'';position:absolute;top:50%;left:50%;
+  width:20px;height:20px;border-radius:50%;
+  transform:translate(-50%,-50%) scale(0);
+  border:1px solid rgba(0,212,255,0.5);
+  opacity:0;pointer-events:none;
+}
+body.stark .stat .val::before{animation:statRipple 4s ease-out infinite}
+body.stark .stat .val::after{animation:statRipple 4s ease-out infinite 1s}
+body.stark .stat.orange .val::before,body.stark .stat.orange .val::after{border-color:rgba(255,159,67,0.5)}
+body.stark .stat.teal .val::before,body.stark .stat.teal .val::after{border-color:rgba(0,255,136,0.5)}
+body.stark .stat.yellow .val::before,body.stark .stat.yellow .val::after{border-color:rgba(255,211,42,0.5)}
+@keyframes statRipple{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:0.6}
+  30%{transform:translate(-50%,-50%) scale(2.5);opacity:0.15}
+  50%{transform:translate(-50%,-50%) scale(3);opacity:0}
+  100%{transform:translate(-50%,-50%) scale(3);opacity:0}
+}
 body.stark .stat.primary .val{color:#00d4ff;text-shadow:0 0 8px rgba(0,212,255,0.4)}
 body.stark .stat.orange .val{color:#ff9f43;text-shadow:0 0 8px rgba(255,159,67,0.4)}
 body.stark .stat.teal .val{color:#00ff88;text-shadow:0 0 8px rgba(0,255,136,0.4)}
 body.stark .stat.yellow .val{color:#ffd32a;text-shadow:0 0 8px rgba(255,211,42,0.4)}
 
 /* Tabs */
-body.stark .tabs{background:rgba(10,30,60,0.6);border-color:rgba(0,180,255,0.2);box-shadow:0 0 10px rgba(0,180,255,0.08)}
+body.stark .tabs{background:rgba(10,30,60,0.6);border-color:rgba(0,210,255,0.5);box-shadow:0 0 10px rgba(0,180,255,0.08);padding:8px;border-radius:12px}
 body.stark .tab{color:#3d7a9e}
-body.stark .tab.active{background:rgba(0,212,255,0.15);color:#00d4ff;box-shadow:0 0 10px rgba(0,212,255,0.15)}
+
+
+
+/* Stark tab racing borders using @property */
+@property --tabAngle1{syntax:'<angle>';initial-value:0deg;inherits:false}
+@property --tabAngle2{syntax:'<angle>';initial-value:0deg;inherits:false}
+body.stark .tab.active{position:relative}
+body.stark .tab.active::before,
+body.stark .tab.active::after{
+  content:'';position:absolute;pointer-events:none;
+  padding:1px;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+body.stark .tab.active::before{
+  inset:-6px;border-radius:13px;
+  background:conic-gradient(from var(--tabAngle1),transparent 60%,rgba(0,212,255,0.7) 80%,transparent 100%);
+  animation:tabSpin1 2.5s linear infinite;
+}
+body.stark .tab.active::after{
+  inset:0px;border-radius:7px;
+  background:conic-gradient(from var(--tabAngle2),transparent 60%,rgba(0,212,255,0.7) 80%,transparent 100%);
+  animation:tabSpin2 4s linear infinite;
+}
+@keyframes tabSpin1{0%{--tabAngle1:0deg}100%{--tabAngle1:360deg}}
+@keyframes tabSpin2{0%{--tabAngle2:0deg}100%{--tabAngle2:-360deg}}
+body.stark .tab.active{color:#00d4ff;background:rgba(0,180,255,0.12);box-shadow:inset 0 0 12px rgba(0,212,255,0.08)}
 
 /* Canvas panels with HUD frame */
 body.stark .canvas-panel{
-  background:transparent;border:1px solid rgba(0,180,255,0.25);
+  background:transparent;border:1px solid rgba(0,210,255,0.6);
   box-shadow:var(--stark-glow);position:relative;
 }
 body.stark .canvas-panel::before{
@@ -236,10 +679,10 @@ body.stark .canvas-panel::before{
 }
 
 /* 3D container */
-body.stark #three-container{border-color:rgba(0,180,255,0.3);background:rgba(5,12,25,0.92)}
+body.stark #three-container{border-color:rgba(0,210,255,0.6);background:rgba(5,12,25,0.92)}
 
 /* View buttons */
-body.stark .view-btn{color:#3d7a9e;border-color:rgba(0,180,255,0.15)}
+body.stark .view-btn{color:#3d7a9e;border-color:rgba(0,210,255,0.5)}
 body.stark .view-btn:hover{color:#00d4ff;border-color:rgba(0,212,255,0.4)}
 body.stark .view-btn.active{
   color:#00d4ff;border-color:#00d4ff;background:rgba(0,212,255,0.12);
@@ -248,25 +691,25 @@ body.stark .view-btn.active{
 
 /* Export buttons */
 body.stark .btn-export{
-  border-color:rgba(0,180,255,0.25);color:#5a9ab8;background:rgba(0,20,50,0.4);
+  border-color:rgba(0,210,255,0.55);color:#5a9ab8;background:rgba(0,20,50,0.4);
 }
 body.stark .btn-export:hover{border-color:#00d4ff;color:#00d4ff;background:rgba(0,212,255,0.1)}
 
 /* Detail table */
-body.stark .detail-table th{color:#3d7a9e;border-color:rgba(0,180,255,0.15)}
+body.stark .detail-table th{color:#3d7a9e;border-color:rgba(0,210,255,0.5)}
 body.stark .detail-table td{color:#d0eeff;border-color:rgba(0,180,255,0.1)}
 
 /* Efficiency bars */
 body.stark .eff-track{background:rgba(0,180,255,0.1)}
 
 /* Theme toggle */
-body.stark .theme-toggle{border-color:rgba(0,180,255,0.3);color:#00d4ff}
+body.stark .theme-toggle{border-color:rgba(0,210,255,0.55);color:#00d4ff}
 body.stark .theme-toggle:hover{background:rgba(0,212,255,0.1);border-color:#00d4ff}
 
 /* Legend */
 body.stark .legend-item{color:#5a9ab8}
-body.stark .legend-sw[style*="#e6c187"]{background:#1a6e9e!important}
-body.stark .legend-sw[style*="#b09264"]{background:#0d3a5c!important}
+body.stark .legend-sw[style*="#e6c187"]{background:#2090c0!important}
+body.stark .legend-sw[style*="#b09264"]{background:#145080!important}
 
 /* Empty state */
 body.stark .main{background:transparent}
@@ -281,9 +724,9 @@ body.stark .stark-hud{display:block}
 
 /* Oscilloscope wave */
 .stark-oscillo{
-  height:56px;overflow:hidden;border:1px solid rgba(0,180,255,0.2);border-radius:6px;
+  height:56px;overflow:hidden;border:1px solid rgba(0,210,255,0.6);border-radius:6px;
   background:rgba(0,10,25,0.6);
-  background-image:linear-gradient(rgba(0,180,255,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,255,0.06) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(0,210,255,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(0,210,255,0.12) 1px,transparent 1px);
   background-size:8px 8px;position:relative;margin:10px 0;
   box-shadow:0 0 12px rgba(0,180,255,0.1);
 }
@@ -316,14 +759,14 @@ body.stark .stark-hud{display:block}
 /* Data stream */
 .stark-datastream{
   font-family:'JetBrains Mono',monospace;font-size:12px;color:#1a5a7a;
-  line-height:1.8;overflow:hidden;height:72px;
-  border:1px solid rgba(0,180,255,0.2);border-radius:6px;
+  line-height:1.8;overflow:hidden;height:78px;
+  border:1px solid rgba(0,210,255,0.6);border-radius:6px;
   background:rgba(0,10,30,0.5);padding:8px 10px;margin:8px 0;
   box-shadow:0 0 10px rgba(0,180,255,0.08);
   display:flex;gap:8px;align-items:stretch;
 }
-.stark-datastream-text{flex:1;overflow:hidden}
-.stark-spectrum{width:160px;flex-shrink:0}
+.stark-datastream-text{flex:1;min-width:0;overflow:hidden}
+.stark-spectrum{flex:1;max-width:220px;min-width:80px}
 .stark-spectrum canvas{width:100%;height:100%;display:block;border-radius:3px}
 .stark-datastream span{color:#00d4ff}
 .stark-datastream .g{color:#00ff88}
@@ -371,8 +814,8 @@ body.stark .stark-3d-overlay{display:block}
   position:absolute;font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(0,212,255,0.5);
   line-height:1.4;
 }
-.stark-3d-readout.top-left{top:14px;left:44px}
-.stark-3d-readout.bottom-right{bottom:14px;right:44px;text-align:right}
+.stark-3d-readout.top-left{top:18px;left:24px}
+.stark-3d-readout.bottom-right{bottom:18px;right:24px;text-align:right}
 
 /* Blinking status dot in 3D */
 .stark-3d-status{
@@ -630,14 +1073,14 @@ body.stark .logo-icon-stack .logo-icon{position:absolute;top:0;left:0;z-index:2}
 
 /* Stark dropdown */
 body.stark .custom-select-trigger{
-  background:rgba(0,20,50,0.6);border-color:rgba(0,180,255,0.25);color:#d0eeff;
-  box-shadow:0 0 8px rgba(0,180,255,0.15),inset 0 0 6px rgba(0,180,255,0.05);
+  background:rgba(0,20,50,0.6);border-color:rgba(0,210,255,0.55);color:#d0eeff;
+  box-shadow:0 0 8px rgba(0,210,255,0.5),inset 0 0 6px rgba(0,180,255,0.05);
 }
 body.stark .custom-select.open .custom-select-trigger{
   border-color:#00d4ff;box-shadow:0 0 18px rgba(0,212,255,0.35),inset 0 0 8px rgba(0,212,255,0.1);
 }
 body.stark .custom-select-opts{
-  background:rgba(5,15,35,0.95);border-color:rgba(0,180,255,0.3);
+  background:rgba(5,15,35,0.95);border-color:rgba(0,210,255,0.55);
   box-shadow:0 8px 30px rgba(0,0,0,0.4),0 0 15px rgba(0,180,255,0.1);
 }
 body.stark .custom-select-opt{color:#7bb8d8}
@@ -645,6 +1088,15 @@ body.stark .custom-select-opt:hover{background:rgba(0,212,255,0.12);color:#00d4f
 body.stark .custom-select-opt.selected{color:#00d4ff}
 
 .btn-export svg{width:14px;height:14px}
+body.stark .toggle-group .toggle-opt.active{
+  background:rgba(0,220,255,0.2)!important;
+  color:#00efff!important;
+  font-size:15px!important;
+  font-weight:700!important;
+  text-shadow:0 0 10px rgba(0,240,255,0.7),0 0 20px rgba(0,200,255,0.3)!important;
+  box-shadow:inset 0 0 14px rgba(0,220,255,0.2)!important;
+  position:relative;overflow:hidden;
+}
 </style>
 </head>
 <body class="light">
@@ -652,7 +1104,16 @@ body.stark .custom-select-opt.selected{color:#00d4ff}
 <div class="app-header">
   <div class="logo">
     <div class="logo-icon-stack">
-      <div class="logo-icon"><svg viewBox="0 0 202.84 202.84" xmlns="http://www.w3.org/2000/svg"><defs><style>.fc1{fill:#e6c187}.fc2{stroke:#383838;stroke-miterlimit:10;stroke-width:13.86px}.fc2,.fc3{fill:#b09364}.fc4{fill:#383838}</style></defs><rect class="fc4" width="202.84" height="202.84" rx="21.31" ry="21.31"/><rect class="fc1" x="55.54" y="85.03" width="91.28" height="91.28" transform="translate(80.33 294.61) rotate(-135)"/><rect class="fc3" x="59.61" y="24.95" width="83.62" height="83.62" transform="translate(125.93 185.67) rotate(-135)"/><polyline class="fc2" points="160.55 66.75 101.42 125.88 42.29 66.75"/></svg></div>
+      <div class="logo-icon"><svg viewBox="0 0 202.84 202.84" xmlns="http://www.w3.org/2000/svg"><defs><style>.fc1{fill:#e6c187}.fc2{stroke:#383838;stroke-miterlimit:10;stroke-width:13.86px}.fc2,.fc3{fill:#b09364}.fc4{fill:#383838}body.stark .toggle-group .toggle-opt.active{
+  background:rgba(0,220,255,0.2)!important;
+  color:#00efff!important;
+  font-size:15px!important;
+  font-weight:700!important;
+  text-shadow:0 0 10px rgba(0,240,255,0.7),0 0 20px rgba(0,200,255,0.3)!important;
+  box-shadow:inset 0 0 14px rgba(0,220,255,0.2)!important;
+  position:relative;overflow:hidden;
+}
+</style></defs><rect class="fc4" width="202.84" height="202.84" rx="21.31" ry="21.31"/><rect class="fc1" x="55.54" y="85.03" width="91.28" height="91.28" transform="translate(80.33 294.61) rotate(-135)"/><rect class="fc3" x="59.61" y="24.95" width="83.62" height="83.62" transform="translate(125.93 185.67) rotate(-135)"/><polyline class="fc2" points="160.55 66.75 101.42 125.88 42.29 66.75"/></svg></div>
       <div class="stark-arcs"><div class="stark-arc a1"></div><div class="stark-arc a2"></div><div class="stark-arc a3"></div><div class="stark-arc a4"></div><div class="stark-arc-dot"></div></div>
     </div>
     <div class="logo-text">
@@ -774,7 +1235,7 @@ body.stark .custom-select-opt.selected{color:#00d4ff}
           <div>RX: 1024 <span>PKT</span> <span class="y">PROC</span> 0xFF</div>
           <div>MEM: 0x7FFF <span class="r">ALLOC</span> 48.2MB</div>
         </div>
-        <div class="stark-spectrum"><canvas id="specCanvas" width="160" height="56"></canvas></div>
+        <div class="stark-spectrum"><canvas id="specCanvas" height="56"></canvas></div>
       </div>
     </div>
     <button class="btn-calc" onclick="calculate()">Calcular patrón</button>
@@ -1466,11 +1927,11 @@ function drawSideView() {
     const ly = boxBaseY - (i + 1) * calc.BH * scale, lh = calc.BH * scale;
     const isActive = layer === currentLayerView;
     if (layer === 'A') {
-      ctx.fillStyle = isActive ? (isStark?'#1a6e9e':'#e6c187') : (light ? '#f0dbb8' : (isStark?'#0f4a6e':'#8a7550'));
-      ctx.strokeStyle = isStark ? '#0d4a70' : '#c49a4a';
+      ctx.fillStyle = isActive ? (isStark?'#2090c0':'#e6c187') : (light ? '#f0dbb8' : (isStark?'#186a90':'#8a7550'));
+      ctx.strokeStyle = isStark ? '#1570a0' : '#c49a4a';
     } else {
-      ctx.fillStyle = isActive ? (isStark?'#0d3a5c':'#b09264') : (light ? '#c8b08a' : (isStark?'#082a44':'#6e5a3a'));
-      ctx.strokeStyle = isStark ? '#082a44' : '#8a6b3a';
+      ctx.fillStyle = isActive ? (isStark?'#145080':'#b09264') : (light ? '#c8b08a' : (isStark?'#0e3a60':'#6e5a3a'));
+      ctx.strokeStyle = isStark ? '#0e3a60' : '#8a6b3a';
     }
     ctx.lineWidth = isActive ? 1.5 : 0.5;
     rr(ctx, offX + 2, ly, drawW - 4, lh - 1, 2); ctx.fill(); ctx.stroke();
@@ -1581,13 +2042,13 @@ function init3D() {
       const w3 = box.w / 1000, d3 = box.h / 1000;
       const geo = new THREE.BoxGeometry(w3 - 0.003, BH3 - 0.003, d3 - 0.003);
       const col = currentTheme === 'stark'
-        ? (box.orient === 'A' ? 0x1a6e9e : 0x0d3a5c)
+        ? (box.orient === 'A' ? 0x2090c0 : 0x145080)
         : (box.orient === 'A' ? 0xe6c187 : 0xb09264);
       const m = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color: col }));
       m.position.set(box.x / 1000 + w3 / 2, baseY + BH3 / 2, box.y / 1000 + d3 / 2);
       palGrp.add(m);
       const ec = currentTheme === 'stark'
-        ? (box.orient === 'A' ? 0x0d4a70 : 0x082a44)
+        ? (box.orient === 'A' ? 0x1570a0 : 0x0e3a60)
         : (box.orient === 'A' ? 0xa0823a : 0x7a5c2a);
       const wf = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color: ec, transparent: true, opacity: 0.6 }));
       wf.position.copy(m.position); palGrp.add(wf);
@@ -1749,13 +2210,13 @@ function toggle3DStyle(s) {
       b.mesh.material.dispose();
       b.mesh.material = new THREE.MeshLambertMaterial({
         color: currentTheme === 'stark'
-          ? (b.orient === 'A' ? 0x1a6e9e : 0x0d3a5c)
+          ? (b.orient === 'A' ? 0x2090c0 : 0x145080)
           : (b.orient === 'A' ? 0xe6c187 : 0xb09264)
       });
       b.wireframe.material.dispose();
       b.wireframe.material = new THREE.LineBasicMaterial({
         color: currentTheme === 'stark'
-          ? (b.orient === 'A' ? 0x0d4a70 : 0x082a44)
+          ? (b.orient === 'A' ? 0x1570a0 : 0x0e3a60)
           : (b.orient === 'A' ? 0xa0823a : 0x7a5c2a),
         transparent: true, opacity: 0.6
       });
@@ -2075,6 +2536,15 @@ td{font-family:monospace}
 .eff-track{height:6px;background:${borderC};border-radius:3px;overflow:hidden}
 .eff-fill{height:100%;border-radius:3px}
 footer{text-align:center;color:#555;font-size:11px;margin-top:32px;padding-top:16px;border-top:1px solid ${borderC}}
+body.stark .toggle-group .toggle-opt.active{
+  background:rgba(0,220,255,0.2)!important;
+  color:#00efff!important;
+  font-size:15px!important;
+  font-weight:700!important;
+  text-shadow:0 0 10px rgba(0,240,255,0.7),0 0 20px rgba(0,200,255,0.3)!important;
+  box-shadow:inset 0 0 14px rgba(0,220,255,0.2)!important;
+  position:relative;overflow:hidden;
+}
 </style></head><body>
 <h1>Reporte de Paletizado</h1>
 <p class="sub">Caja ${calc.BL}×${calc.BW}×${calc.BH} mm (ext.) · Pallet ${calc.PL/10}×${calc.PW/10} cm · Tarima ${calc.palletH/10} cm · Alt. máx. ${calc.maxH/10} cm</p>
@@ -2232,7 +2702,7 @@ function animOscilloscope() {
     const y = Math.round(i * H / 4);
     const val = (2 - i).toFixed(0);
     ctx.fillText(val, 12, y || 5);
-    ctx.strokeStyle = 'rgba(0,140,220,0.04)';
+    ctx.strokeStyle = 'rgba(0,210,255,0.1)';
     ctx.lineWidth = 0.5;
     ctx.beginPath(); ctx.moveTo(14, y); ctx.lineTo(W, y); ctx.stroke();
   }
@@ -2243,7 +2713,7 @@ function animOscilloscope() {
     const x = Math.round(i * W / 8);
     ctx.fillStyle = 'rgba(0,160,220,0.4)';
     ctx.fillText((i * 0.5).toFixed(1), x, H - 8);
-    ctx.strokeStyle = 'rgba(0,140,220,0.04)';
+    ctx.strokeStyle = 'rgba(0,210,255,0.1)';
     ctx.lineWidth = 0.5;
     ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H - 10); ctx.stroke();
   }
@@ -2259,7 +2729,7 @@ function animOscilloscope() {
   ctx.save();
   ctx.shadowColor = 'rgba(0,180,255,0.4)';
   ctx.shadowBlur = 6;
-  ctx.strokeStyle = 'rgba(0,200,240,0.75)';
+  ctx.strokeStyle = '#50ffff';
   ctx.lineWidth = 1;
   ctx.beginPath();
   for (let x = 0; x < W; x++) {
@@ -2276,7 +2746,7 @@ function animOscilloscope() {
   ctx.save();
   ctx.shadowColor = 'rgba(0,255,136,0.25)';
   ctx.shadowBlur = 4;
-  ctx.strokeStyle = 'rgba(0,240,130,0.8)';
+  ctx.strokeStyle = '#00ff88';
   ctx.lineWidth = 0.7;
   ctx.beginPath();
   for (let x = 0; x < W; x++) {
@@ -2323,6 +2793,7 @@ function animOscilloscope() {
       scv._bars[i] += (scv._targets[i] - scv._bars[i]) * speed;
     }
     const sx = scv.getContext('2d');
+    scv.width = scv.parentElement.clientWidth;
     const sW = scv.width, sH = scv.height;
     sx.clearRect(0, 0, sW, sH);
     const bars = 48;
@@ -2341,6 +2812,193 @@ function animOscilloscope() {
 
   oscAnim = requestAnimationFrame(animOscilloscope);
 }
+
+
+
+
+
+
+// ===== CALC LOGO GLITCH (JS layers) =====
+(function(){
+  const span = document.querySelector('.logo h1 span');
+  if (!span) return;
+  
+  // Wrap span content and create layers
+  const wrap = document.createElement('span');
+  wrap.className = 'calc-glitch-wrap';
+  wrap.textContent = span.textContent;
+  
+  const layerR = document.createElement('span');
+  layerR.className = 'calc-glitch-layer';
+  layerR.textContent = span.textContent;
+  layerR.style.textShadow = '3px 0 rgba(255,0,80,0.8)';
+  
+  const layerB = document.createElement('span');
+  layerB.className = 'calc-glitch-layer';
+  layerB.textContent = span.textContent;
+  layerB.style.textShadow = '-3px 0 rgba(0,200,255,0.8)';
+  
+  span.textContent = '';
+  span.style.position = 'relative';
+  span.style.display = 'inline-block';
+  span.appendChild(wrap);
+  span.appendChild(layerR);
+  span.appendChild(layerB);
+  
+  function glitchBurst() {
+    if (currentTheme !== 'stark') { setTimeout(glitchBurst, 1000); return; }
+    const dur = 200 + Math.random() * 300;
+    const frames = 4 + Math.floor(Math.random() * 4);
+    const frameMs = dur / frames;
+    let i = 0;
+    
+    function tick() {
+      if (i >= frames) {
+        // Reset
+        wrap.style.transform = 'none';
+        wrap.style.filter = 'none';
+        layerR.style.opacity = '0';
+        layerB.style.opacity = '0';
+        setTimeout(glitchBurst, 500 + Math.random() * 3500);
+        return;
+      }
+      // Main text warp
+      const skew = (Math.random() * 20 - 10).toFixed(1);
+      const tx = (Math.random() * 6 - 3).toFixed(1);
+      const ty = (Math.random() * 3 - 1.5).toFixed(1);
+      wrap.style.transform = 'skewX(' + skew + 'deg) translate(' + tx + 'px,' + ty + 'px)';
+      wrap.style.filter = Math.random() > 0.5 ? 'blur(0.5px)' : 'none';
+      
+      // Red layer
+      const clipTop1 = Math.floor(Math.random() * 80);
+      const clipH1 = 15 + Math.floor(Math.random() * 25);
+      layerR.style.opacity = (0.5 + Math.random() * 0.4).toFixed(1);
+      layerR.style.transform = 'translate(' + (-(2 + Math.random()*4)).toFixed(1) + 'px,' + (Math.random()*2-1).toFixed(1) + 'px)';
+      layerR.style.clipPath = 'polygon(0 '+clipTop1+'%,100% '+clipTop1+'%,100% '+(clipTop1+clipH1)+'%,0 '+(clipTop1+clipH1)+'%)';
+      
+      // Blue layer
+      const clipTop2 = Math.floor(Math.random() * 80);
+      const clipH2 = 15 + Math.floor(Math.random() * 25);
+      layerB.style.opacity = (0.5 + Math.random() * 0.4).toFixed(1);
+      layerB.style.transform = 'translate(' + (2 + Math.random()*4).toFixed(1) + 'px,' + (Math.random()*2-1).toFixed(1) + 'px)';
+      layerB.style.clipPath = 'polygon(0 '+clipTop2+'%,100% '+clipTop2+'%,100% '+(clipTop2+clipH2)+'%,0 '+(clipTop2+clipH2)+'%)';
+      
+      i++;
+      setTimeout(tick, frameMs);
+    }
+    tick();
+  }
+  glitchBurst();
+})();
+
+
+// ===== CALC BUTTON GLITCH (JS layers) =====
+(function(){
+  const btn = document.querySelector('.btn-calc');
+  if (!btn) return;
+  
+  const origText = btn.textContent.trim();
+  btn.textContent = '';
+  
+  // Container span acts as reliable positioning context
+  const container = document.createElement('span');
+  container.style.cssText = 'position:relative;display:inline-block';
+  
+  const wrap = document.createElement('span');
+  wrap.className = 'calc-glitch-wrap';
+  wrap.textContent = origText;
+  const cursor = document.createElement('span');
+  cursor.textContent = '▎';
+  cursor.className = 'stark-cursor';
+  cursor.style.cssText = 'margin-left:3px;animation:cursorBlink .6s step-end infinite;font-weight:300;opacity:.7;display:none';
+  wrap.appendChild(cursor);
+  
+  const layerR = document.createElement('span');
+  layerR.className = 'calc-glitch-layer';
+  layerR.textContent = origText;
+  layerR.style.textShadow = '3px 0 rgba(255,0,80,0.8)';
+  
+  const layerB = document.createElement('span');
+  layerB.className = 'calc-glitch-layer';
+  layerB.textContent = origText;
+  layerB.style.textShadow = '-3px 0 rgba(0,200,255,0.8)';
+  
+  container.appendChild(wrap);
+  container.appendChild(layerR);
+  container.appendChild(layerB);
+  btn.appendChild(container);
+  
+  function glitchBurst() {
+    if (currentTheme !== 'stark') { setTimeout(glitchBurst, 1000); return; }
+    const dur = 200 + Math.random() * 300;
+    const frames = 4 + Math.floor(Math.random() * 4);
+    const frameMs = dur / frames;
+    let i = 0;
+    
+    function tick() {
+      if (i >= frames) {
+        wrap.style.transform = 'none';
+        wrap.style.filter = 'none';
+        layerR.style.opacity = '0';
+        layerB.style.opacity = '0';
+        setTimeout(glitchBurst, 500 + Math.random() * 3500);
+        return;
+      }
+      const skew = (Math.random() * 16 - 8).toFixed(1);
+      const tx = (Math.random() * 6 - 3).toFixed(1);
+      const ty = (Math.random() * 2 - 1).toFixed(1);
+      wrap.style.transform = 'skewX(' + skew + 'deg) translate(' + tx + 'px,' + ty + 'px)';
+      wrap.style.filter = Math.random() > 0.5 ? 'blur(0.5px)' : 'none';
+      
+      const clipTop1 = Math.floor(Math.random() * 80);
+      const clipH1 = 15 + Math.floor(Math.random() * 25);
+      layerR.style.opacity = (0.5 + Math.random() * 0.4).toFixed(1);
+      layerR.style.transform = 'translate(' + (-(2 + Math.random()*4)).toFixed(1) + 'px,' + (Math.random()*2-1).toFixed(1) + 'px)';
+      layerR.style.clipPath = 'polygon(0 '+clipTop1+'%,100% '+clipTop1+'%,100% '+(clipTop1+clipH1)+'%,0 '+(clipTop1+clipH1)+'%)';
+      
+      const clipTop2 = Math.floor(Math.random() * 80);
+      const clipH2 = 15 + Math.floor(Math.random() * 25);
+      layerB.style.opacity = (0.5 + Math.random() * 0.4).toFixed(1);
+      layerB.style.transform = 'translate(' + (2 + Math.random()*4).toFixed(1) + 'px,' + (Math.random()*2-1).toFixed(1) + 'px)';
+      layerB.style.clipPath = 'polygon(0 '+clipTop2+'%,100% '+clipTop2+'%,100% '+(clipTop2+clipH2)+'%,0 '+(clipTop2+clipH2)+'%)';
+      
+      i++;
+      setTimeout(tick, frameMs);
+    }
+    tick();
+  }
+  glitchBurst();
+})();
+
+
+// ===== STARK TOGGLE FLICKER =====
+function toggleFlickerLoop(el) {
+  if (currentTheme !== 'stark') { setTimeout(() => toggleFlickerLoop(el), 1000); return; }
+  if (!el.classList.contains('active')) { el.style.removeProperty('color'); el.style.removeProperty('text-shadow'); setTimeout(() => toggleFlickerLoop(el), 500); return; }
+  
+  // Random burst: 1-4 flashes
+  const flashes = 1 + Math.floor(Math.random() * 4);
+  let i = 0;
+  function flash() {
+    if (i >= flashes) {
+      el.style.removeProperty('color');
+      el.style.removeProperty('text-shadow');
+      setTimeout(() => toggleFlickerLoop(el), 500 + Math.random() * 2500);
+      return;
+    }
+    el.style.setProperty('color', 'rgba(0,239,255,' + (0.1 + Math.random() * 0.25).toFixed(2) + ')', 'important');
+    el.style.setProperty('text-shadow', 'none', 'important');
+    setTimeout(() => {
+      el.style.removeProperty('color');
+      el.style.removeProperty('text-shadow');
+      setTimeout(() => { i++; flash(); }, 30 + Math.random() * 60);
+    }, 40 + Math.random() * 80);
+  }
+  flash();
+}
+document.querySelectorAll('.toggle-opt').forEach(el => {
+  setTimeout(() => toggleFlickerLoop(el), 500 + Math.random() * 2500);
+});
 
 // ===== STARK HUD ANIMATIONS =====
 let starkInterval = null;
